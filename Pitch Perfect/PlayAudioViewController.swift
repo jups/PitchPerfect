@@ -10,24 +10,12 @@ import UIKit
 import AVFoundation
 
 class PlayAudioViewController: UIViewController {
-   var audioPlayer: AVAudioPlayer!
    var receivedAudio:RecordedAudio!
    var audioEngine:AVAudioEngine!
    var audioFile:AVAudioFile!
    
-   
-   
-   func setupAudio(rate:Float) {
-      audioPlayer.stop()
-      audioPlayer.currentTime = 0
-      audioPlayer.rate = rate
-      audioPlayer.play()
-   }
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-      audioPlayer = AVAudioPlayer(contentsOfURL: receivedAudio.filePathUrl, error: nil)
-      audioPlayer.enableRate = true
       
       // initialize our audioEngine object
       audioEngine = AVAudioEngine()
@@ -43,36 +31,44 @@ class PlayAudioViewController: UIViewController {
     }
     
    @IBAction func playSlow(sender: UIButton) {
-      audioEngine.stop()
-      audioEngine.reset()
-      setupAudio(0.5)
-
-
+      playAudioWithEffect(1, rate: 1/4)
       
    }
    @IBAction func playFast(sender: UIButton) {
-      audioEngine.stop()
-      audioEngine.reset()
-      setupAudio(1.5)
+      playAudioWithEffect(1, rate: 2)
 
    }
    
    
    @IBAction func playChipmunk(sender: UIButton) {
-      playAudioWithVariablePitch(1000)
+      playAudioWithEffect(1000, rate: 1.0)
 
    }
    
-   func playAudioWithVariablePitch(pitch: Float){
-      audioPlayer.stop()
+   @IBAction func playDarthvaderAudio(sender: UIButton) {
+      playAudioWithEffect(-1000, rate: 1.0)
+   }
+   
+   
+   @IBAction func stopButton(sender: UIButton) {
+      prepareAudio()
+   }
+   
+   func prepareAudio(){
       audioEngine.stop()
       audioEngine.reset()
-      
+   }
+   
+   
+   
+   func playAudioWithEffect(audioPitch: Float, rate: Float){
+      prepareAudio()
       var audioPlayerNode = AVAudioPlayerNode()
       audioEngine.attachNode(audioPlayerNode)
       
       var changePitchEffect = AVAudioUnitTimePitch()
-      changePitchEffect.pitch = pitch
+      changePitchEffect.pitch = audioPitch
+      changePitchEffect.rate = rate
       audioEngine.attachNode(changePitchEffect)
       
       audioEngine.connect(audioPlayerNode, to:changePitchEffect, format: nil)
@@ -84,15 +80,8 @@ class PlayAudioViewController: UIViewController {
       audioPlayerNode.play()
    }
    
-   @IBAction func playDarthvaderAudio(sender: UIButton) {
-      playAudioWithVariablePitch(-1000)
-   }
-   
-   @IBAction func stopButton(sender: UIButton) {
-      audioPlayer.stop()
-      audioEngine.stop()
-      audioEngine.reset()
-   }
+
+
 
 
 }
