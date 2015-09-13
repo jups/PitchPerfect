@@ -53,7 +53,6 @@ class PlayAudioViewController: UIViewController {
     
    @IBAction func playSlow(sender: UIButton) {
       println ("playSlow")
-      //slowPlayButton.enabled = false
       setupAudio(0.5)
 
 
@@ -99,6 +98,8 @@ class PlayAudioViewController: UIViewController {
    
    @IBAction func stopButton(sender: UIButton) {
       audioPlayer.stop()
+      audioEngine.stop()
+      audioEngine.reset()
    }
 
     /*
