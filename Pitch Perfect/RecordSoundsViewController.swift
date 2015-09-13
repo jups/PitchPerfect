@@ -35,13 +35,14 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
    override func viewWillAppear(animated: Bool) {
       stopButton.hidden = true
       recordButton.enabled = true
-      recordingMessage.hidden = true
+      recordingMessage.text = "Press To Record"
    }
    
    @IBAction func recordAudio(sender: UIButton) {
       recordButton.enabled = false
+      recordingMessage.text = "Recording in Progress"
       stopButton.hidden = false
-      recordingMessage.hidden = false
+      
       // Recording the Audio
 
       let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
@@ -100,7 +101,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
    
    
    @IBAction func stopAudio(sender: UIButton) {
-      recordingMessage.hidden = true
       audioRecorder.stop()
       // shares this recording with the other viewController
       var audioSession = AVAudioSession.sharedInstance();

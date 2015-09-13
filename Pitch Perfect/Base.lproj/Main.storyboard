@@ -27,12 +27,6 @@
                                     <action selector="recordAudio:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="eEG-bj-9q6"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOY-l8-ZZm">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" name="MalayalamSangamMN-Bold" family="Malayalam Sangam MN" pointSize="19"/>
-                                <color key="textColor" red="0.65020918719999998" green="0.1052632429" blue="0.106071712" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LgF-OV-CbH">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" image="Stop">
@@ -42,6 +36,15 @@
                                     <action selector="stopAudio:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="wwN-aN-bgo"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press To Record" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOY-l8-ZZm">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="MalayalamSangamMN-Bold" family="Malayalam Sangam MN" pointSize="19"/>
+                                <color key="textColor" red="0.65020918719999998" green="0.1052632429" blue="0.106071712" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact">
+                                    <fontDescription key="fontDescription" name="MalayalamSangamMN-Bold" family="Malayalam Sangam MN" pointSize="19"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.37388820711554183" green="0.83148568435754189" blue="0.59455152003030687" alpha="0.79000000000000004" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -57,8 +60,8 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="Lhb-so-hUx"/>
-                                <exclude reference="pOY-l8-ZZm"/>
                                 <exclude reference="LgF-OV-CbH"/>
+                                <exclude reference="pOY-l8-ZZm"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="Mkl-Bh-fxq"/>
@@ -74,8 +77,8 @@
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="Lhb-so-hUx"/>
-                                <include reference="pOY-l8-ZZm"/>
                                 <include reference="LgF-OV-CbH"/>
+                                <include reference="pOY-l8-ZZm"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="Mkl-Bh-fxq"/>
