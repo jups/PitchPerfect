@@ -20,21 +20,20 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
    var recordedAudio:RecordedAudio!
    
 
-   override func didReceiveMemoryWarning() {
-      super.didReceiveMemoryWarning()
-      // Dispose of any resources that can be recreated.
-   }
-
+   // Setting up Our view
    override func viewWillAppear(animated: Bool) {
       stopButton.hidden = true
       recordButton.enabled = true
       recordButton.hidden = false
+      recordingMessage.hidden = false
       recordingMessage.text = "Press To Record"
    }
+   
+   // Not vital, but makes the transition less splotchy (on both Xcode and 5s tests)
    override func viewWillDisappear(animated: Bool) {
       stopButton.hidden = true
       recordButton.hidden = true
-      recordingMessage.text = ""
+      recordingMessage.hidden = true
    }
    
    @IBAction func recordAudio(sender: UIButton) {
@@ -61,7 +60,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
    }
    
    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
-      // use if(flag) to make sure that we have successfully recorded audio
+      // have we successfully recorded audio?
       if (flag) {
          // Saving Recorded Audio by calling RecordedAudio class
          recordedAudio = RecordedAudio(filePathUrl: recorder.url, title: recorder.url.lastPathComponent!)

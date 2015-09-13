@@ -16,13 +16,14 @@ class PlayAudioViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-      
       // initialize our audioEngine object
       audioEngine = AVAudioEngine()
       audioFile = AVAudioFile(forReading: receivedAudio.filePathUrl, error: nil)
-      
-      
     }
+   override func viewWillDisappear(animated: Bool) {
+      // makes audio transition more fluid
+      prepareAudio()
+   }
 
    @IBOutlet weak var slowPlayButton: UIButton!
     override func didReceiveMemoryWarning() {
@@ -79,9 +80,4 @@ class PlayAudioViewController: UIViewController {
       
       audioPlayerNode.play()
    }
-   
-
-
-
-
 }
