@@ -25,15 +25,6 @@ class PlayAudioViewController: UIViewController {
    }
     override func viewDidLoad() {
         super.viewDidLoad()
-//      if var filePath = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3") {
-//         let filePathURL = NSURL.fileURLWithPath(filePath)
-//         audioPlayer = AVAudioPlayer(contentsOfURL: filePathURL, error: nil)
-//         audioPlayer.enableRate = true
-//         
-//      }
-//      else {
-//         println("filePath for movie_quote is empty")
-//      }
       
       audioPlayer = AVAudioPlayer(contentsOfURL: receivedAudio.filePathUrl, error: nil)
       audioPlayer.enableRate = true
@@ -48,13 +39,12 @@ class PlayAudioViewController: UIViewController {
    @IBOutlet weak var slowPlayButton: UIButton!
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
     }
     
    @IBAction func playSlow(sender: UIButton) {
       audioEngine.stop()
       audioEngine.reset()
-      println ("playSlow")
       setupAudio(0.5)
 
 
@@ -63,14 +53,12 @@ class PlayAudioViewController: UIViewController {
    @IBAction func playFast(sender: UIButton) {
       audioEngine.stop()
       audioEngine.reset()
-      println ("playFast")
       setupAudio(1.5)
 
    }
    
    
    @IBAction func playChipmunk(sender: UIButton) {
-      println ("playChipmunk")
       playAudioWithVariablePitch(1000)
 
    }
@@ -106,14 +94,5 @@ class PlayAudioViewController: UIViewController {
       audioEngine.reset()
    }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

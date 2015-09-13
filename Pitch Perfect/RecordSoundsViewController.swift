@@ -17,14 +17,12 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
    
    
    var audioRecorder:AVAudioRecorder!
-   // creating new object for class RecordedAudio
    var recordedAudio:RecordedAudio!
    
    
    override func viewDidLoad() {
       super.viewDidLoad()
 
-      // Do any additional setup after loading the view, typically from a nib.
    }
 
    override func didReceiveMemoryWarning() {
@@ -46,18 +44,9 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
       // Recording the Audio
 
       let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
-   /*
-      // This would let us timestamp and use a timestamped version of our recording
-      //    but that would make tons of recordings..
-      let currentDateTime = NSDate()
-      let formatter = NSDateFormatter()
-      formatter.dateFormat = "ddMMyyyy-HHmmss"
-      let recordingName = formatter.stringFromDate(currentDateTime)+".wav"
-   */
       let recordingName = "my_audio.wav"
       let pathArray = [dirPath, recordingName]
       let filePath = NSURL.fileURLWithPathComponents(pathArray)
-      println(filePath)
       
       var session = AVAudioSession.sharedInstance()
       session.setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
@@ -98,7 +87,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
    
    @IBAction func stopAudio(sender: UIButton) {
       audioRecorder.stop()
-      // shares this recording with the other viewController
+      // sharing this recording with the other viewController
       var audioSession = AVAudioSession.sharedInstance();
       audioSession.setActive(false, error: nil)
    }
